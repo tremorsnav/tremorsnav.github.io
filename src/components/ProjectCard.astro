@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  demoUrl?: string;
+  githubUrl?: string;
+}
+
+const { title, description, tags, demoUrl, githubUrl } = Astro.props;
+---
+
+<article class="p-6 bg-slate-900/60 border border-slate-800 rounded-lg flex flex-col justify-between hover:border-slate-700 transition-colors">
+  <div>
+    <h3 class="text-lg font-semibold text-slate-100 mb-2">{title}</h3>
+    <p class="text-slate-400 text-sm leading-relaxed mb-4">{description}</p>
+  </div>
+
+  <div>
+    <ul class="flex flex-wrap gap-2 mb-6">
+      {tags.map((tag) => (
+        <li class="px-2.5 py-0.5 text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700/50 rounded">
+          {tag}
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex gap-4 text-xs font-medium">
+      {demoUrl && (
+        <a 
+          href={demoUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
+        >
+          Ver proyecto &rarr;
+        </a>
+      )}
+      {githubUrl && (
+        <a 
+          href={githubUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-slate-400 hover:text-slate-200 transition-colors"
+        >
+          Código fuente
+        </a>
+      )}
+    </div>
+  </div>
+</article>
